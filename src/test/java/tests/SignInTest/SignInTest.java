@@ -23,8 +23,8 @@ public class SignInTest extends BaseTest {
 
         LOG.info("Check 'Sign in' button");
         Assert.assertTrue(signInPage.isSignInButtonDisplayed(), "Button is not displayed");
-//asert reprezinta cautarea pe pagina a butonului sign in
         signInPage.clickSignInButton();
+        //asert reprezinta cautarea pe pagina a butonului sign in
         sleep(3000);
 //        nu ramane in cod dupa verificare se sterge sleep
 

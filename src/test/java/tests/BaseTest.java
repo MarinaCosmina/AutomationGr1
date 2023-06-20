@@ -8,12 +8,15 @@ import pages.SignInPage.SignInPage;
 
 public class BaseTest{
 //se apeleaza clasa din sign in page, iti da acces in clasa pentru a putea apela clasa
+
     public SignInPage signInPage = SignInPage.getInstance();
     public RegisterPage registerPage = RegisterPage.getInstance();
+
     @BeforeSuite
     public void init(){
         BasePage.setUp();
     }
+
     @AfterSuite
     public void tearDown(){
         BasePage.tearDown();

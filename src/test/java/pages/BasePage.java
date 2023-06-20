@@ -35,5 +35,16 @@ public class BasePage {
         }
     }
 
+    public static String returnBaseUrl(){
+        return "https://demo.automationtesting.in/Index.html";
+    }
+    public static String getBaseUrl() {
+        String baseurl = returnBaseUrl();
+        if (baseurl!= null){
+            return baseurl.replace("Index.html", "");
+        }
+        return baseurl;
+    }
+
 
 }
