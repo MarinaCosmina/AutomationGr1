@@ -13,37 +13,37 @@ public class RegisterTest extends BaseTest {
     private static final Logger LOG = LoggerFactory.getLogger(RegisterPage.class);
     private String newUrl = getBaseUrl() + "Register.html";
 
+    String language = "Romanian";
+    String skill = "Android";
+    String country = "India";
+    String firstName = "Ion";
+    String lastName = "Ion2";
+    String address = "Cluj";
+    String email = "tester@com";
+    String phone = "0745272719";
+    String year = "1992";
+    String month = "July";
+    String day = "5";
+    String firstPassword = "dajfj";
+    String secondPassword = "jffnf";
 
 
     @Test
     public void registerPage() {
-
         driver.get(newUrl);
-
-        String firstName = "Ion";
-        String lastName = "Ion2";
-        String address = "Cluj";
-        String email = "tester@com";
-        String phone = "0745272719";
 
         LOG.info("Complete first name");
         registerPage.typeInFirstNameField(firstName);
-        sleep(3000);
-
 
         LOG.info("Complete last name");
         registerPage.typeInLastNameField(lastName);
-        sleep(3000);
 
         LOG.info("Complete 'address' field");
         registerPage.typeInAddressField(address);
-        sleep(3000);
-
 
         LOG.info("Complete 'email and phone' fields");
         registerPage.typeInEmailField(email);
         registerPage.typeInPhoneField(phone);
-        sleep(3000);
 
         LOG.info ("Click gender radio button");
         registerPage.clickMaleGender();
@@ -58,9 +58,30 @@ public class RegisterTest extends BaseTest {
         LOG.info ("Click 'Cricket' radio button");
         registerPage.clickCheckBoxHochey();
 
+        LOG.info("Click language field");
+        registerPage.clickLanguageField(language);
+        sleep(3000);
+
+        LOG.info ("Click skill");
+        registerPage.clickSelectSkill(skill);
+
+        LOG.info ("Click 'Select Country'");
+        registerPage.clickSelectCountry(country);
+
+        LOG.info("Select Birth Date");
+        registerPage.birthDate(year,month,day);
+
+        LOG.info("Confirm Password Fields");
+        registerPage.confirmPassword(firstPassword,secondPassword);
+//
+//        LOG.info("Confirm Password Fields");
+//        registerPage.();
+
+        LOG.info ("Click 'submit' button");
+        registerPage.clickSubmitButton();
 
 
-
+//switchToPage - package
 
 
 

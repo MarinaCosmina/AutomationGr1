@@ -1,6 +1,7 @@
 package pages;
 
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.slf4j.Logger;
@@ -18,7 +19,10 @@ public class BasePage {
         driver.get(url);//Methoda care porneste Chrome
 
         LOG.info("Open Browser Maximized");
-        driver.manage().window().maximize();//Methoda care Porneste Chrome in Maximized Window
+//        driver.manage().window().maximize();//Methoda care Porneste Chrome in Maximized Window
+        Dimension dimension = new Dimension(1366,768);
+        driver.manage().window().setSize(dimension);
+//        metoda pentru setarea rezolutiei, in cazul in care apar reclame pe pagina
 
     }
 
@@ -40,7 +44,7 @@ public class BasePage {
     }
     public static String getBaseUrl() {
         String baseurl = returnBaseUrl();
-        if (baseurl!= null){
+        if (baseurl != null){
             return baseurl.replace("Index.html", "");
         }
         return baseurl;

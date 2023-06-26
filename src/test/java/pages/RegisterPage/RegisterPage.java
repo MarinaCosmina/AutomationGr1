@@ -1,5 +1,9 @@
 package pages.RegisterPage;
 
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +37,20 @@ public class RegisterPage extends BasePage {
     private By checkBoxCricket = By.id("checkbox1");
     private By checkBoxMovies = By.id("checkbox2");
     private By checkBoxHockey = By.id("checkbox3");
-
+    private By languageField = By.id("msdd");
+    String selectLanguage = "//a[contains(text(), '%s')]";
+    //    locatorul este artificiu pentru a apela o lista de elemente din pagina web
+//    sa nu se creeeze aceasi locatori pentru fiecare tara
+    String selectSkill = "Skills";
+    private By selectCountry = By.xpath("//span[@role='combobox']");
+    private By searchField = By.xpath("//input[@type='search']");
+    private By birthYear = By.id("yearbox");
+    private By birthMonth = By.xpath("//select[@placeholder='Month']");
+    private By birthDay = By.id("daybox");
+    private By firstPassword = By.id("firstpassword");
+    private By secondPassword = By.id("secondpassword");
+    private By chooseFile = By.id("imagesrc");
+    private By submitBtn = By.id("submitbtn");
 
 
     public void typeInFirstNameField(String firstName) {
@@ -61,29 +78,86 @@ public class RegisterPage extends BasePage {
         driver.findElement(phoneField).sendKeys(phone);
     }
 
-    public void clickMaleGender () {
+    public void clickMaleGender() {
         LOG.info("Click 'gender' radio button 'Male'");
         driver.findElement(genderMale).click();
     }
-    public void clickFeMaleGender () {
+
+    public void clickFeMaleGender() {
         LOG.info("Click 'gender' radio button 'Female'");
         driver.findElement(genderFeMale).click();
     }
 
-    public void clickCheckBoxCricket () {
+    public void clickCheckBoxCricket() {
         LOG.info("Click 'Cricket' radio button");
         driver.findElement(checkBoxCricket).click();
     }
 
-    public void clickCheckBoxMovies () {
+    public void clickCheckBoxMovies() {
         LOG.info("Click 'Movies' radio button");
         driver.findElement(checkBoxMovies).click();
     }
 
-    public void clickCheckBoxHochey () {
-        LOG.info("Click 'Hochey' radio button");
+    public void clickCheckBoxHochey() {
+        LOG.info("Click 'Hockey' radio button");
         driver.findElement(checkBoxHockey).click();
     }
 
+    public void clickLanguageField(String language) {
+        LOG.info("Select language field");
+        driver.findElement(languageField).click();
+        driver.findElement(By.xpath(String.format(selectLanguage, language))).click();
+    }
 
-}
+    public void clickSelectSkill(String skill) {
+        LOG.info("Select skills");
+        Select newskill = new Select(driver.findElement(By.id(selectSkill)));
+        newskill.selectByValue(skill);
+    }
+
+    public void clickSelectCountry(String country) {
+        LOG.info("Select country field");
+        driver.findElement(selectCountry).click();
+        driver.findElement(searchField).sendKeys(country);
+        driver.findElement(searchField).sendKeys(Keys.ENTER);
+
+    }
+
+    public void birthDate(String year, String month, String day) {
+        LOG.info("Select Birthdate");
+        Select birthYearDate = new Select(driver.findElement(birthYear));
+        birthYearDate.selectByValue(year);
+        Select birthMonthDate = new Select(driver.findElement(birthMonth));
+        birthMonthDate.selectByValue(month);
+        Select birthDayDate = new Select(driver.findElement(birthDay));
+        birthDayDate.selectByValue(day);
+    }
+
+    public void confirmPassword (String password,String confirmPassword) {
+        LOG.info("Enter First password");
+        driver.findElement(firstPassword).sendKeys(password);
+        driver.findElement(secondPassword).sendKeys(confirmPassword);
+    }
+
+    public void chooseFileButton(){
+        LOG.info("Upload file");
+        driver.findElement(chooseFile).click();
+        WebElement chooseFilePC = driver.findElement(chooseFile);
+        chooseFilePC.sendKeys("D://20140818_125717.jpg");
+    }
+    public void clickSubmitButton(){
+        LOG.info("Click on 'submit' button");
+        driver.findElement(submitBtn).click();
+    }
+
+
+    }
+
+
+
+
+
+
+
+
+
